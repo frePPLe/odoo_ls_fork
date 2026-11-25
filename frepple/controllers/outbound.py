@@ -1172,7 +1172,10 @@ class exporter(object):
         for i in self.generator.getData(
             "product.supplierinfo",
             fields=supplierinfo_fields,
-            search=[("product_tmpl_id", "!=", False)],
+            search=[
+                ("product_tmpl_id", "!=", False),
+                ("partner_id.name", "not ilike", "LiquidStack Limited"),
+            ],
         ):
             if i["product_id"]:
                 if i["product_id"][0] in itemsuppliers_product:
